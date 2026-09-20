@@ -1,0 +1,425 @@
+{
+  "source": "【焕新二期】LQA模板.xlsx",
+  "entries": [
+    {
+      "id": "client-r02",
+      "name_zh": "键盘输入问题",
+      "name_en": "Keyboard Input",
+      "definition_zh": "聊天框无法输入目标语言",
+      "definition_en": "Cannot input the target language in the chat box.",
+      "category": "功能类缺陷",
+      "priority": "T0",
+      "owner": "对应模块开发"
+    },
+    {
+      "id": "client-r03",
+      "name_zh": "语言匹配问题",
+      "name_en": "Language Mismatch",
+      "definition_zh": "显示的语言与设置的语言不符",
+      "definition_en": "The language shown does not match the selected language.",
+      "category": "功能类缺陷",
+      "priority": "T0",
+      "owner": "对应模块开发"
+    },
+    {
+      "id": "client-r04",
+      "name_zh": "美术资源缺失/错误配置",
+      "name_en": "Missing/Misconfigured Art Asset",
+      "definition_zh": "美术资源丢失或者出现不对应的美术资源图片",
+      "definition_en": "Missing or incorrect art assets.",
+      "category": "功能类缺陷",
+      "priority": "T0",
+      "owner": "对应模块开发"
+    },
+    {
+      "id": "client-r05",
+      "name_zh": "乱码代码",
+      "name_en": "Mojibake",
+      "definition_zh": "游戏界面出现乱码或者代码",
+      "definition_en": "Garbled text or code appearing in the game interface.",
+      "category": "乱码代码",
+      "priority": "T0",
+      "owner": "对应模块开发"
+    },
+    {
+      "id": "client-r06",
+      "name_zh": "字体不适配，重度影响阅读理",
+      "name_en": "Critical Font Incompatibility",
+      "definition_zh": "导致界面出现乱码",
+      "definition_en": "Garbled text appears due to font incompatibility.",
+      "category": "字体字号",
+      "priority": "T0",
+      "owner": "UI / 开发"
+    },
+    {
+      "id": "client-r07",
+      "name_zh": "字体不适配，中度影响阅读理解",
+      "name_en": "Moderate Font Incompatibility",
+      "definition_zh": "界面中发现多种字体混用",
+      "definition_en": "Mixed fonts used within the same interface.",
+      "category": "字体字号",
+      "priority": "T1",
+      "owner": "UI / 开发"
+    },
+    {
+      "id": "client-r08",
+      "name_zh": "字体不适配，轻度影响阅读体验",
+      "name_en": "Minor Font Incompatibility",
+      "definition_zh": "界面发现类似如单词中英文字母不对齐等轻度影响阅读理解的问题",
+      "definition_en": "Misaligned letters within words that affect readability slightly.",
+      "category": "字体字号",
+      "priority": "T2",
+      "owner": "UI / 开发"
+    },
+    {
+      "id": "client-r09",
+      "name_zh": "字号自适应问题，中度影响阅读体验",
+      "name_en": "Moderate Font Size Auto-scaling Issue",
+      "definition_zh": "缩小字号后文案在手机上难以辨识，需要缩短译文或者变大字号",
+      "definition_en": "Text becomes illegible on mobile devices after the font size is reduced, requiring either a shorter translation or a larger font size.",
+      "category": "字体字号",
+      "priority": "T1",
+      "owner": "UI / 开发"
+    },
+    {
+      "id": "client-r10",
+      "name_zh": "字号自适应问题，轻度影响阅读体验",
+      "name_en": "Minor Font Size Auto-scaling Issue",
+      "definition_zh": "缩小字号后文案在手机上可以勉强辨识，但可以进一步优化，例如缩短译文或者变大字号",
+      "definition_en": "Text is almost illegible on mobile devices after the font size is reduced, but this can be fixed by shortening the translation or increasing the font size.",
+      "category": "字体字号",
+      "priority": "T2",
+      "owner": "UI / 开发"
+    },
+    {
+      "id": "client-r11",
+      "name_zh": "字号颜色与背景匹配度问题",
+      "name_en": "Font Color & Background Contrast",
+      "definition_zh": "字号颜色与背景对比过低或者过高，轻度影响阅读体验",
+      "definition_en": "The contrast between the font color and the background is too subtle or intense, making the text hard to read.",
+      "category": "字体字号",
+      "priority": "T2",
+      "owner": "UI / 开发"
+    },
+    {
+      "id": "client-r12",
+      "name_zh": "文本换行有误，重度影响阅读体验",
+      "name_en": "Critically Incorrect Text Wrapping",
+      "definition_zh": "游戏界面中发现严重换行问题，完全不符合目标语种换行规则",
+      "definition_en": "Line breaks in the game do not match the target language's formatting standards at all.",
+      "category": "排版问题",
+      "priority": "T0",
+      "owner": "UI / 开发"
+    },
+    {
+      "id": "client-r13",
+      "name_zh": "文本换行有误，中度影响阅读体验",
+      "name_en": "Moderately Incorrect Text Wrapping",
+      "definition_zh": "游戏界面中发现个别换行问题，个别字体不符合目标语种换行规则",
+      "definition_en": "Some line breaks in the game do not match the target language's formatting standards.",
+      "category": "排版问题",
+      "priority": "T1",
+      "owner": "UI / 开发"
+    },
+    {
+      "id": "client-r14",
+      "name_zh": "文本换行有误，轻度影响阅读体验",
+      "name_en": "Slightly Incorrect Text Wrapping",
+      "definition_zh": "游戏界面中发现个别符号被切换到第二行，轻度影响阅读理解，可尝试使用缩短翻译解决",
+      "definition_en": "Certain punctuations are moved to the next line incorrectly, which may slightly affect readability and can be fixed by shortening the translation.",
+      "category": "排版问题",
+      "priority": "T2",
+      "owner": "UI / 开发"
+    },
+    {
+      "id": "client-r15",
+      "name_zh": "严重文本&UI爆框、重叠、截断问题",
+      "name_en": "Critical Text/UI Overflow, Overlap, or Truncation",
+      "definition_zh": "重度影响阅读体验",
+      "definition_en": "Critically affects readability.",
+      "category": "排版问题",
+      "priority": "T0",
+      "owner": "UI / 开发"
+    },
+    {
+      "id": "client-r16",
+      "name_zh": "源文本露出或显示为空白",
+      "name_en": "Displayed Source Text/Blank Text",
+      "definition_zh": "源文本未翻译或显示为空白。",
+      "definition_en": "Untranslated or blank text.",
+      "category": "源语露出",
+      "priority": "T0",
+      "owner": "对应模块策划"
+    },
+    {
+      "id": "client-r17",
+      "name_zh": "翻译内容错误",
+      "name_en": "Incorrect Translation",
+      "definition_zh": "翻译不正确或部分内容未翻译",
+      "definition_en": "Mistranslated or partially untranslated.",
+      "category": "误译",
+      "priority": "T0",
+      "owner": ""
+    },
+    {
+      "id": "client-r18",
+      "name_zh": "翻译内容不符",
+      "name_en": "Translation Mismatch",
+      "definition_zh": "翻译与功能、情境、游戏设置或上下文不匹配。 由于译者通常无法体验游戏，翻译可能会与游戏不一致，即便翻译本身没有错误。",
+      "definition_en": "The translation does not match functionality, scenarios, game settings, or context. As most translators aren't able to play the game directly, this can result in some inconsistencies in their translations, despite them being correct.",
+      "category": "误译",
+      "priority": "T1",
+      "owner": ""
+    },
+    {
+      "id": "client-r19",
+      "name_zh": "错字/缺字",
+      "name_en": "Incorrect/Missing Word",
+      "definition_zh": "缺字、拼写错误、多余字母。 拼写错误。同音异义词错误。应为大写的字符是小写，反之亦然。字符之间的间距不足或不必要。",
+      "definition_en": "Missing words, spelling errors, extra letters, homophone errors, incorrect capitalization, or inappropriate character spacing.",
+      "category": "误译",
+      "priority": "T2",
+      "owner": ""
+    },
+    {
+      "id": "client-r20",
+      "name_zh": "美术资源文本错误，中度影响阅读理解",
+      "name_en": "Moderate Text Error in Art Assets",
+      "definition_zh": "美术资源（如图标等）中发现错误译文的问题，严重影响阅读体验",
+      "definition_en": "Translation errors in art assets (like icons) significantly affect readability.",
+      "category": "误译",
+      "priority": "T1",
+      "owner": ""
+    },
+    {
+      "id": "client-r21",
+      "name_zh": "美术资源文本不符，轻度影响阅读理解",
+      "name_en": "Minor Text Mismatch in Art Assets",
+      "definition_zh": "美术资源（如图标等）中发现译文不符合语境，轻度影响阅读体验",
+      "definition_en": "Translation in art assets (like icons) does not match the context, slightly affecting readability.",
+      "category": "误译",
+      "priority": "T2",
+      "owner": ""
+    },
+    {
+      "id": "client-r22",
+      "name_zh": "核心术语/风格一致性不统一问题",
+      "name_en": "Terminology/Style Inconsistency",
+      "definition_zh": "术语不一致，翻译本身不一致。",
+      "definition_en": "Inconsistent term bases or translations.",
+      "category": "不统一",
+      "priority": "T0",
+      "owner": ""
+    },
+    {
+      "id": "client-r23",
+      "name_zh": " 翻译/用字不统一",
+      "name_en": "Translation/Wording Inconsistency",
+      "definition_zh": "用字措辞使用不统一",
+      "definition_en": "Inconsistent wording or phrasing.",
+      "category": "不统一",
+      "priority": "T1",
+      "owner": ""
+    },
+    {
+      "id": "client-r24",
+      "name_zh": "字段拼接问题导致组合语义错误，重度影响阅读理解",
+      "name_en": "Critical String Concatenation Error",
+      "definition_zh": "重度影响阅读理解",
+      "definition_en": "Significantly affects readability.",
+      "category": "字段拼接错误",
+      "priority": "T0",
+      "owner": "对应模块开发"
+    },
+    {
+      "id": "client-r25",
+      "name_zh": "字段拼接问题导致组合语义错误，中度影响阅读理解",
+      "name_en": "Moderate String Concatenation Error",
+      "definition_zh": "中度影响阅读理解",
+      "definition_en": "Moderately affects readability.",
+      "category": "字段拼接错误",
+      "priority": "T1",
+      "owner": "对应模块开发"
+    },
+    {
+      "id": "client-r26",
+      "name_zh": "文法错误问题，中度影响阅读理解",
+      "name_en": "Moderate Grammatical Error",
+      "definition_zh": "语法错误或词序不当",
+      "definition_en": "Grammar errors or incorrect word order.",
+      "category": "语法",
+      "priority": "T1",
+      "owner": ""
+    },
+    {
+      "id": "client-r27",
+      "name_zh": "文法错误问题，轻度影响阅读理解",
+      "name_en": "Minor Grammatical Error",
+      "definition_zh": "冒号后未出现空格",
+      "definition_en": "Missing space after a colon.",
+      "category": "语法",
+      "priority": "T2",
+      "owner": ""
+    },
+    {
+      "id": "client-r28",
+      "name_zh": "格式单位错误问题",
+      "name_en": "Format/Unit Error",
+      "definition_zh": "不同语种下数字、日期、金钱符号等内容的显示出错，如英语数字的千分位符号标错位数、不同国家的习惯年月日显示方式错误等",
+      "definition_en": "Errors in numbers, dates, or currency symbols across different languages, including misplaced separators in English numbers and incorrect date formats for various countries.",
+      "category": "格式单位错误",
+      "priority": "T1",
+      "owner": ""
+    },
+    {
+      "id": "client-r29",
+      "name_zh": "原文错误",
+      "name_en": "Incorrect Source Text",
+      "definition_zh": "出现类似术语使用不统一等重度影响玩家理解的问题",
+      "definition_en": "Inconsistent terminology in the source text that significantly confuses players.",
+      "category": "源语问题",
+      "priority": "T0",
+      "owner": "对应模块策划"
+    },
+    {
+      "id": "client-r30",
+      "name_zh": "原文模糊不清有歧义",
+      "name_en": "Ambiguous Source Text",
+      "definition_zh": "出现类似原文表达模糊等中度影响玩家理解的问题",
+      "definition_en": "Vague expressions in the source text that moderately confuse players.",
+      "category": "源语问题",
+      "priority": "T1",
+      "owner": "对应模块策划"
+    },
+    {
+      "id": "client-r31",
+      "name_zh": "原文不通顺",
+      "name_en": "Incoherent Source Text",
+      "definition_zh": "出现类似原文存在文法错误等轻度影响玩家理解的问题",
+      "definition_en": "Minor grammatical errors in the source text that slightly confuse players.",
+      "category": "源语问题",
+      "priority": "T2",
+      "owner": "对应模块策划"
+    },
+    {
+      "id": "client-r32",
+      "name_zh": "文化适用",
+      "name_en": "Cultural Appropriateness",
+      "definition_zh": "俚语、宗教符号或故事、性别角色等相关内容的描写运用与当地主流文化不符",
+      "definition_en": "The use of slang, religious references, or gender terms is not suitable for the local culture.",
+      "category": "区域风险",
+      "priority": "T0",
+      "owner": "对应模块策划"
+    },
+    {
+      "id": "client-r33",
+      "name_zh": "地缘政治",
+      "name_en": "Geopolitical Issue",
+      "definition_zh": "存在能让人联想到敏感的历史事件、政治隐喻等相关内容的描写，有引发舆论的可能",
+      "definition_en": "Depictions that may evoke sensitive historical events, express political metaphors, or trigger controversy.",
+      "category": "区域风险",
+      "priority": "T0",
+      "owner": "对应模块策划"
+    },
+    {
+      "id": "client-r34",
+      "name_zh": "语言优化 + 语境适用性问题，中度影响阅读体验",
+      "name_en": "Moderate Linguistic Quality & Contextual Appropriateness Issue",
+      "definition_zh": "即使原翻译没有错误，但提出更好或更常见的表达方式， 用以优化现有翻译以及术语一致性",
+      "definition_en": "Even if the original translation is error-free, you may enhance its quality and ensure terminology consistency by suggesting better or more commonly used expressions.",
+      "category": "语言优化",
+      "priority": "T1",
+      "owner": ""
+    },
+    {
+      "id": "client-r35",
+      "name_zh": "语言优化 + 语境适用性问题，轻度影响阅读体验",
+      "name_en": "Minor Linguistic Quality & Contextual Appropriateness Issue",
+      "definition_zh": "即使原翻译没有错误，但提出更好或更常见的表达方式， 用以优化现有翻译以及术语一致性",
+      "definition_en": "Even if the original translation is error-free, you may enhance its quality and ensure terminology consistency by suggesting better or more commonly used expressions.",
+      "category": "语言优化",
+      "priority": "T2",
+      "owner": ""
+    },
+    {
+      "id": "client-r36",
+      "name_zh": "配音缺失",
+      "name_en": "Missing Voiceover",
+      "definition_zh": "音乐丢失或音混入中文配音，或者出现音质模糊不清等严重问题",
+      "definition_en": "Missing music, overlapping Chinese voiceovers, or critical issues like unclear audio quality.",
+      "category": "配音相关",
+      "priority": "T0",
+      "owner": "对应模块策划"
+    },
+    {
+      "id": "client-r37",
+      "name_zh": "配音匹配问题",
+      "name_en": "Voiceover Mismatch",
+      "definition_zh": "出现配音与游戏显示字幕显示不一致、不同步等配音问题",
+      "definition_en": "Voiceover discrepancies, such as mismatches or synchronization issues with on-screen subtitles.",
+      "category": "配音相关",
+      "priority": "T1",
+      "owner": "对应模块策划"
+    },
+    {
+      "id": "client-r38",
+      "name_zh": "其他相关问题",
+      "name_en": "Other Issue",
+      "definition_zh": "游戏过程中遇到的各种程序BUG等其他无法归类于上述缺陷类型的特殊问题",
+      "definition_en": "Various program bugs encountered during gameplay that do not fall under the above categories.",
+      "category": "其他",
+      "priority": "T0",
+      "owner": "对应模块开发"
+    },
+    {
+      "id": "client-r39",
+      "name_zh": "中度文本&UI爆框、重叠、截断问题",
+      "name_en": "Moderate Text/UI Overflow, Overlap, or Truncation",
+      "definition_zh": "中度影响阅读体验",
+      "definition_en": "Moderately affects readability.",
+      "category": "排版问题",
+      "priority": "T1",
+      "owner": "UI / 开发"
+    },
+    {
+      "id": "client-r40",
+      "name_zh": "轻度文本&UI爆框、重叠、截断问题",
+      "name_en": "Minor Text/UI Overflow, Overlap, or Truncation",
+      "definition_zh": "轻度影响阅读体验",
+      "definition_en": "Slightly affects readability.",
+      "category": "排版问题",
+      "priority": "T2",
+      "owner": "UI / 开发"
+    },
+    {
+      "id": "client-r41",
+      "name_zh": "禁止词汇",
+      "name_en": "Prohibited Vocabulary",
+      "definition_zh": "粗俗或不雅的词汇（如中文中的“C-”一词）。\n含有性暗示或性意味的词汇。\n鼓吹反社会或助长犯罪的词汇。\n违背常识、道德或伦理的词汇。\n具有歧视意味的词汇。\n违反国家宪法或危害国家安全的词汇。\n针对国家/地区，带有敌意、轻视或侵害性质的词汇。\n针对种族/民族/历史/文化，带有敌意、轻视或侵害性质的词汇。\n针对宗教/思想/团体，带有敌意、轻视或侵害性质的词汇。\n注意：上述禁止词汇的适用范围会因不同国家或地区而有所不同。在提交相关报告时，请以指定国家或地区的文化与背景作为审查基准。",
+      "definition_en": "Vulgar or inappropriate language.\nSexually explicit language.\nLanguage that promotes antisocial or criminal behavior.\nLanguage that goes against common sense, morality, or ethics.\nDiscriminatory language.\nLanguage that violates constitutional laws or jeopardizes national safety.\nHostile or dismissive language toward a nation or region.\nHostile or dismissive language toward specific races, ethnicities, or cultures.\nHostile or dismissive language toward religious beliefs or groups.\nNote: Vocabulary restrictions vary by country or region. Refer to the local culture and context before you submit the report.",
+      "category": "区域风险",
+      "priority": "T0",
+      "owner": "对应模块策划"
+    },
+    {
+      "id": "client-r42",
+      "name_zh": "禁止图像",
+      "name_en": "Prohibited Imagery",
+      "definition_zh": "禁止图像，如过度暴露血液。性表现或暴露过多皮肤/内衣的图像",
+      "definition_en": "Prohibited images, including gore, sexual content, or overexposure of skin/underwear.",
+      "category": "区域风险",
+      "priority": "T0",
+      "owner": "对应模块策划"
+    },
+    {
+      "id": "client-r43",
+      "name_zh": "配音质量问题",
+      "name_en": "Voiceover Quality",
+      "definition_zh": "出现配音表现单调，或者语气和表达在场景不符合等轻度影响游玩体验的问题",
+      "definition_en": "Monotonous voiceover delivery, or tone and expression misalignment with the scene that may slightly diminish gameplay experience.",
+      "category": "配音相关",
+      "priority": "T2",
+      "owner": "对应模块策划"
+    }
+  ]
+}

@@ -1,0 +1,125 @@
+{
+  "name": "Last Asylum — sei menu in tedesco",
+  "language": "German",
+  "report_language": "Italiano",
+  "case_source": "Case dimostrativi definiti da Codex, non forniti dal cliente. Due pannelli aggiunti prima della run sulla base dei menu realmente osservati. Tutorial escluso.",
+  "device": {
+    "package": "com.phs.global",
+    "serial": "auto",
+    "settle_seconds": 1.2
+  },
+  "policy": {
+    "allow_game_progress": false,
+    "notes": "Solo lettura dei menu. Non testare tutorial. Consentito aprire messaggi automatici del gioco, senza chat tra giocatori o invio di messaggi. Nessun acquisto o riscossione premi necessaria."
+  },
+  "budgets": {
+    "max_calls": 150,
+    "max_actions": 90,
+    "max_minutes": 50,
+    "max_steps_per_case": 24
+  },
+  "cases": [
+    {
+      "id": "DE-MENU-01",
+      "title": "Impostazioni e selezione lingua — pannelli completi",
+      "objective": "Aprire il profilo, poi le impostazioni. Leggere integralmente il pannello Impostazioni e il sottomenu Lingua, scorrendo fino in fondo se necessario. Confermare che la UI sia tedesca. Non modificare account, privacy, audio o altre preferenze. Tornare al menu principale dopo l'analisi.",
+      "journey": [],
+      "checks": [
+        {
+          "id": "DE-SETTINGS",
+          "scope": "Pannello Impostazioni completo e lista Lingua completa, incluso eventuale scroll",
+          "instruction": "Leggere tutte le etichette e i testi. Verificare ortografia, grammatica tedesca, coerenza, overflow, troncamenti e sovrapposizioni. I nomi delle lingue nella lingua originale sono normali, non bug.",
+          "modality": "visual"
+        }
+      ]
+    },
+    {
+      "id": "DE-MENU-05",
+      "title": "Notifiche push — elenco completo delle opzioni",
+      "objective": "Dal profilo aprire Einstellungen, poi il pannello Push/benachrichtigungen con la campanella. Leggere tutte le etichette e le descrizioni, scorrendo fino in fondo e tornando in alto per controllare eventuali righe mancanti. Non attivare o disattivare notifiche e non modificare permessi Android. Tornare al menu Impostazioni dopo la lettura.",
+      "journey": [],
+      "checks": [
+        {
+          "id": "DE-PUSH",
+          "scope": "Intero pannello delle notifiche push, tutti i testi e scroll",
+          "instruction": "Controllare grammatica, ortografia, coerenza delle etichette, interruzioni di riga, troncamenti, overflow e sovrapposizioni. Il target e il tedesco.",
+          "modality": "visual"
+        }
+      ]
+    },
+    {
+      "id": "DE-MENU-06",
+      "title": "Opzioni di gioco — pannello completo",
+      "objective": "Aprire il sottomenu con ingranaggio Einstellungen dentro il pannello generale Einstellungen. Leggere tutte le opzioni audio/grafiche/di gioco e le eventuali descrizioni, scorrendo fino in fondo. Non modificare toggle, volume, qualita o consensi. Chiudere dopo la lettura completa.",
+      "journey": [],
+      "checks": [
+        {
+          "id": "DE-OPTIONS",
+          "scope": "Intero sottomenu delle opzioni di gioco con eventuali scroll",
+          "instruction": "Verificare tutti i testi tedeschi, grammatica, ortografia, coerenza, testo tagliato, overflow e sovrapposizioni.",
+          "modality": "visual"
+        }
+      ]
+    },
+    {
+      "id": "DE-MENU-02",
+      "title": "Primo eroe accessibile — descrizione e prima abilità",
+      "objective": "Trovare il menu Eroi. Aprire la scheda del primo eroe accessibile, leggere la descrizione completa e aprire la descrizione della prima abilità consultabile. Analizzare entrambi i testi integralmente, con eventuale scroll. Non migliorare, evocare o acquistare eroi. Se il menu è bloccato, segnalarlo senza avviare il tutorial.",
+      "journey": [],
+      "checks": [
+        {
+          "id": "DE-HERO-BIO",
+          "scope": "Descrizione completa del primo eroe accessibile",
+          "instruction": "Leggere tutto il testo della descrizione e le etichette contestuali; controllare tedesco e UI.",
+          "modality": "visual"
+        },
+        {
+          "id": "DE-HERO-SKILL",
+          "scope": "Popup completo della prima abilità consultabile dello stesso eroe",
+          "instruction": "Leggere integralmente effetto, valori e condizioni della prima abilità; controllare grammatica, coerenza e impaginazione. Non dichiarare accuratezza rispetto alla sorgente non fornita.",
+          "modality": "visual"
+        }
+      ]
+    },
+    {
+      "id": "DE-MENU-03",
+      "title": "Zaino — descrizioni complete dei primi tre oggetti",
+      "objective": "Trovare lo zaino/inventario. Aprire in ordine le descrizioni dei primi tre oggetti posseduti con testo consultabile. Leggere ciascun popup interamente, inclusi eventuali scroll. Non usare, vendere o riscattare gli oggetti. Se sono disponibili meno di tre oggetti, dichiarare la copertura parziale.",
+      "journey": [],
+      "checks": [
+        {
+          "id": "DE-ITEM-1",
+          "scope": "Descrizione completa del primo oggetto",
+          "instruction": "Verificare testo tedesco, condizioni, numeri, coerenza e overflow dell'intero popup.",
+          "modality": "visual"
+        },
+        {
+          "id": "DE-ITEM-2",
+          "scope": "Descrizione completa del secondo oggetto distinto",
+          "instruction": "Verificare testo tedesco, condizioni, numeri, coerenza e overflow dell'intero popup.",
+          "modality": "visual"
+        },
+        {
+          "id": "DE-ITEM-3",
+          "scope": "Descrizione completa del terzo oggetto distinto",
+          "instruction": "Verificare testo tedesco, condizioni, numeri, coerenza e overflow dell'intero popup.",
+          "modality": "visual"
+        }
+      ]
+    },
+    {
+      "id": "DE-MENU-04",
+      "title": "Posta di sistema — primo messaggio completo",
+      "objective": "Trovare la posta, sezione messaggi automatici di sistema del gioco, e aprire il primo messaggio con contenuto testuale. Leggere titolo, corpo e footer integralmente fino in fondo. Evitare messaggi personali/chat dei giocatori. Non inviare messaggi, non cancellare e non riscattare premi.",
+      "journey": [],
+      "checks": [
+        {
+          "id": "DE-SYSTEM-MAIL",
+          "scope": "Titolo, corpo e footer completi del primo messaggio automatico di sistema",
+          "instruction": "Controllare ortografia, grammatica e punteggiatura tedesca, coerenza interna, testo mancante, overflow e sovrapposizioni, verificando tutti gli scroll necessari.",
+          "modality": "visual"
+        }
+      ]
+    }
+  ]
+}

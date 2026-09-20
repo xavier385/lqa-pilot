@@ -1,0 +1,46 @@
+{
+  "name": "Nuovo progetto LQA",
+  "language": "German",
+  "report_language": "English",
+  "mode": "full",
+  "video": {"max_dimension": 1920, "bit_rate": 8000000},
+  "content_policy": {},
+  "device": {
+    "package": "com.example.game",
+    "serial": "auto"
+  },
+  "goals": [
+    "Aprire le impostazioni e verificare tutti i testi visibili e i sottomenu specificati dal cliente."
+  ],
+  "materials": [],
+  "cheats": [],
+  "glossary": {},
+  "policy": {
+    "allow_game_progress": false
+  },
+  "budgets": {
+    "max_calls": 100,
+    "max_actions": 80,
+    "max_minutes": 60,
+    "max_steps_per_case": 35
+  },
+  "cases": [
+    {
+      "id": "SETTINGS-01",
+      "title": "Impostazioni: pannello iniziale",
+      "objective": "Raggiungere il pannello impostazioni e controllare tutti i testi del pannello iniziale. I sottomenu sono esclusi da questo case.",
+      "journey": [
+        "Trovare il menu delle impostazioni partendo dalla schermata corrente",
+        "Leggere tutte le etichette del pannello, scorrendo se necessario"
+      ],
+      "checks": [
+        {
+          "id": "SETTINGS-TEXT",
+          "scope": "Intero pannello iniziale delle impostazioni, incluso eventuale scroll",
+          "instruction": "Verificare ortografia, grammatica, uniformità della lingua, sovrapposizioni, tagli e leggibilità di tutte le etichette del pannello. Escludere i sottomenu.",
+          "modality": "visual"
+        }
+      ]
+    }
+  ]
+}

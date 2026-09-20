@@ -1,0 +1,38 @@
+{
+  "name": "Preparazione Last Asylum in tedesco — non test LQA",
+  "language": "German",
+  "report_language": "Italiano",
+  "device": {
+    "package": "com.phs.global",
+    "serial": "auto",
+    "settle_seconds": 1.2
+  },
+  "policy": {
+    "allow_game_progress": true,
+    "notes": "Il richiedente autorizza espressamente il cambio della lingua in tedesco. Consentiti tutorial e risorse base necessarie a raggiungere i menu. Non analizzare il tutorial. No acquisti, valuta premium, account o chat.",
+    "allow_official_game_update": true
+  },
+  "budgets": {
+    "max_calls": 130,
+    "max_actions": 110,
+    "max_minutes": 45,
+    "max_steps_per_case": 85
+  },
+  "cases": [
+    {
+      "id": "SETUP-DE",
+      "title": "Sbloccare menu e impostare Deutsch",
+      "objective": "Raggiungere le impostazioni, aprire il menu lingua e scegliere Deutsch/German/Tedesco. Confermare il cambio e attendere eventuale riavvio. Finire quando la UI è visibilmente in tedesco e i menu normali sono accessibili. Il gioco è ancora nel tutorial: avanzare solo per sbloccare i menu, non analizzarne i testi. Usare Skip/Salta se disponibile. Per il movimento, gli swipe simulano un joystick flottante: partire da un'area libera nella metà inferiore e trascinare nella direzione desiderata, poi osservare. Non fare swipe sul personaggio o verso una coordinata assoluta del bersaglio se serve il joystick. L'utente ha autorizzato il cambio lingua. Se un tutorial ha più opzioni, preferire quella che prosegue più rapidamente senza spese premium.",
+      "journey": [],
+      "checks": [
+        {
+          "id": "GERMAN-UI",
+          "scope": "UI in tedesco e accesso ai menu ordinari",
+          "instruction": "Confermare che Deutsch è selezionato o che le etichette della UI sono effettivamente in tedesco e i menu normali sono accessibili.",
+          "modality": "visual"
+        }
+      ]
+    }
+  ],
+  "case_source": "Preparazione dimostrativa per Last Asylum; non è un test LQA del cliente."
+}

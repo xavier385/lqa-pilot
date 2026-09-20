@@ -1,0 +1,20 @@
+[
+  "创建时间/Date Created",
+  "发现位置（必填）/Location (Required)",
+  "缺陷所属模块/Bug Module",
+  "图片（必填）/Screenshot (Required)",
+  "LQA缺陷（必填）/LQA Bug (Required)",
+  "错误说明&优化建议（必填）/Error Description & Suggestion (Required)",
+  "错误KEY（如有）/Error Key (if applicable)",
+  "是否已在语言包内修复/Fixed in Language File",
+  "是否为译者问题",
+  "责任人（PM填写）",
+  "优先级/Priority",
+  "缺陷分类/Bug Category",
+  "建议研发修改方/Assigned To",
+  "研发修复进度/Dev Status",
+  "研发备注/Dev Notes",
+  "本地化验收进度/LQA Status",
+  "本地化备注/Localizer Notes",
+  "创建人/Created By"
+]

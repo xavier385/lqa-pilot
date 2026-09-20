@@ -1,0 +1,56 @@
+{
+  "name": "Last Asylum: Plague — LQA visuale del tutorial su gioco ufficiale",
+  "language": "English",
+  "report_language": "Italiano",
+  "device": {
+    "package": "com.phs.global",
+    "serial": "auto",
+    "settle_seconds": 1.5
+  },
+  "policy": {
+    "allow_game_progress": true,
+    "notes": "Consentiti avanzamento del tutorial e risorse base rinnovabili. Niente acquisti, valuta premium, chat, gestione account o reset."
+  },
+  "cheats": [],
+  "budgets": {
+    "max_calls": 30,
+    "max_actions": 15,
+    "max_minutes": 15,
+    "max_steps_per_case": 12
+  },
+  "cases": [
+    {
+      "id": "LA-TEXT-01",
+      "title": "Tutorial Build Ward: schermata completa",
+      "objective": "Analizzare tutte le stringhe attualmente visibili nella schermata tutorial Build Ward: obiettivo, istruzione di movimento, etichetta della piazzola, costi, contatori risorse. Lo scope è questa schermata, non i menu futuri. Rimanere fermi fino alla lettura e all'analisi complete; quindi finire il case senza dover costruire.",
+      "journey": [],
+      "checks": [
+        {
+          "id": "WARD-TEXT",
+          "scope": "Schermata Build Ward completa attualmente visibile",
+          "instruction": "Leggere tutte le etichette e contatori visibili. Verificare ortografia/grammatica inglese, leggibilità, tagli/sovrapposizioni. I titoli brevi da UI non richiedono necessariamente articoli e nomi propri non sono errori. Non presumere errori di traduzione senza sorgente.",
+          "modality": "visual"
+        }
+      ]
+    },
+    {
+      "id": "LA-TEXT-02",
+      "title": "Raggiungere e analizzare il prossimo pannello del tutorial",
+      "objective": "Avanzare nel tutorial dal Build Ward fino al prossimo pannello, dialogo o obiettivo diverso, quindi analizzarne TUTTE le stringhe e finire. Muovere il personaggio con il joystick/swipe verso la piazzola evidenziata; è ammesso spendere i gettoni base ottenuti dal tutorial, non valuta premium o denaro. La schermata successiva al raggiungimento della piazzola è il traguardo; non completare l'intero tutorial.",
+      "journey": [
+        "Raggiungere la piazzola Ward seguendo il percorso puntinato",
+        "Attendere il nuovo dialogo o obiettivo tutorial",
+        "Leggere integralmente il nuovo pannello/dialogo e i suoi pulsanti"
+      ],
+      "checks": [
+        {
+          "id": "NEXT-PANEL",
+          "scope": "Un nuovo pannello/dialogo/obiettivo del tutorial successivo a Build Ward",
+          "instruction": "Verificare tutte le stringhe del nuovo pannello, inclusi titolo, descrizione, pulsanti e eventuale scroll; ortografia/grammatica inglese, overflow, tagli e coerenza visibile. Finire solo dopo avere osservato un pannello diverso da Build Ward.",
+          "modality": "visual"
+        }
+      ]
+    }
+  ],
+  "case_source": "Case dimostrativi definiti da Codex per collaudare il workflow, non forniti dal cliente."
+}

@@ -1,0 +1,52 @@
+{
+  "name": "Last Asylum: Plague — prova reale di navigazione, non build cliente",
+  "language": "detect",
+  "report_language": "Italiano",
+  "device": {
+    "package": "com.phs.global",
+    "serial": "auto",
+    "settle_seconds": 1.5
+  },
+  "policy": {
+    "allow_game_progress": true,
+    "notes": "Sono consentiti tutorial e risorse ordinarie rinnovabili. Niente acquisti, valuta premium, chat, gestione account o reset."
+  },
+  "cheats": [],
+  "budgets": {
+    "max_calls": 65,
+    "max_actions": 40,
+    "max_minutes": 25,
+    "max_steps_per_case": 25
+  },
+  "cases": [
+    {
+      "id": "LA-01",
+      "title": "Raggiungere e leggere il pannello delle impostazioni",
+      "objective": "Dal gioco corrente raggiungere il pannello iniziale delle impostazioni (ingranaggio, eventualmente sotto il profilo). Analizzare tutti i testi del pannello, incluso scroll. Non cambiare account, server o lingua. I sottomenu sono esclusi. Se il tutorial blocca il menu, progredire con le normali azioni del tutorial e le risorse base per renderlo accessibile entro il budget.",
+      "journey": [],
+      "checks": [
+        {
+          "id": "LA-SETTINGS",
+          "scope": "Tutte le etichette del pannello iniziale impostazioni, con scroll se presente",
+          "instruction": "Verificare errori di ortografia/grammatica, testo tagliato o sovrapposto, lingua e leggibilità. Non presumere errori di traduzione senza sorgente.",
+          "modality": "visual"
+        }
+      ]
+    },
+    {
+      "id": "LA-02",
+      "title": "Profilo giocatore: prima schermata",
+      "objective": "Raggiungere il profilo giocatore e leggere tutta la sua prima schermata, scorrendo se necessario. Non modificare nome, account o immagine. I sottomenu sono esclusi.",
+      "journey": [],
+      "checks": [
+        {
+          "id": "LA-PROFILE",
+          "scope": "Intera prima schermata del profilo giocatore, eventuale scroll incluso",
+          "instruction": "Verificare tutte le etichette e descrizioni visibili per ortografia, grammatica, overflow, testo mancante e uniformità. Trattare nomi propri e nickname come tali.",
+          "modality": "visual"
+        }
+      ]
+    }
+  ],
+  "case_source": "Case dimostrativi definiti da Codex per collaudare il workflow, non forniti dal cliente."
+}
