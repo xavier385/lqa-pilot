@@ -33,7 +33,7 @@ def main():
     ttk.Label(frame,text='Indirizzo della web app (HTTPS)').pack(anchor='w')
     origin=tk.StringVar(value=config.get('origin',''))
     entry=ttk.Entry(frame,textvariable=origin,width=64);entry.pack(fill='x',pady=6)
-    state=tk.StringVar(value='Apri MuMu e il gioco. Poi collega questo PC.')
+    state=tk.StringVar(value='Apri MuMu e collega questo PC. Il bot aprirà il gioco.')
     code=tk.StringVar(value='');companion=[None]
     def start():
         try:

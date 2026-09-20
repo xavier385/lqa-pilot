@@ -97,12 +97,12 @@ class AdaptiveWorkbookTests(unittest.TestCase):
             self.assertEqual(p['project_context']['case_context']['W0001']['log_keys'],['log_keys-1'])
             self.assertEqual(p['client_workbook']['sheets'][0]['columns'][0]['field'],'description')
 
-    def test_objectives_only_uses_agreed_fallback(self):
+    def test_objectives_only_uses_simple_fallback_with_optional_keys(self):
         with tempfile.TemporaryDirectory() as t:
             root=Path(t);mixed_file(root/'client.xlsx',False)
             p=read_json(import_project(root/'client.xlsx',root/'out',{'language':'German','package':'com.demo.game'},model=Planner()))
             self.assertTrue(p['client_workbook']['fallback'])
-            w=load_workbook(root/'out/client-template.xlsx');self.assertEqual(w.sheetnames,['Bug list']);self.assertEqual(w.active.max_column,18);w.close()
+            w=load_workbook(root/'out/client-template.xlsx');self.assertEqual(w.sheetnames,['Bug list']);self.assertEqual(w.active.max_column,9);w.close()
 
     def test_missing_essential_context_cannot_start_or_leave_a_runnable_plan(self):
         with tempfile.TemporaryDirectory() as t:

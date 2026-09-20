@@ -1,5 +1,15 @@
 # Collaudo del 18 settembre 2026
 
+## Aggiornamento 0.6.0 — progetti generici e avvio del gioco (20 settembre)
+
+95 test software locali superati. Verificati upload HTTP a blocchi di 31 MB, lettura di 42 fogli con una cella alla riga 50.000/colonna 250, obiettivi senza bug list, report semplice con sole chiavi presenti, fallback per report non utilizzabile e registrazione attiva prima dell'apertura del gioco. Nessun limite fisso sul peso dell'XLSX; RAM e disco restano risorse finite. Le parti non modificate dell'export vengono copiate in streaming.
+
+Prova reale espressamente richiesta: creato un Excel a un solo foglio/una colonna con tre obiettivi dimostrativi (tutorial, impostazioni, menu informativo). Due chiamate GPT hanno riconosciuto i tre obiettivi senza glossario, chiavi o bug list. Il launcher ha trovato Last Asylum dal nome e aperto il package `com.phs.global`. Corretto il riconoscimento quando MuMu esegue l'app in un profilo Android diverso da quello predefinito; corretto anche il rilevamento della porta nel campo `port_forward.adb.host_port`.
+
+Il gioco mostrava il consenso iniziale. Il bot ha selezionato Deutsch, poi si è fermato prima di accettare le condizioni. La revisione automatica ha richiesto autorizzazione esplicita per i termini obbligatori. Tutorial e menu restano INCOMPLETE: questa prova non ne certifica la copertura. Il report semplice è stato generato con gli esiti incompleti. L'opzione `allow_required_terms` è disattivata per default, può essere abilitata soltanto dall'operatore e non abilita pubblicità personalizzata o altri consensi facoltativi.
+
+Consumo fino alla sospensione: 2 chiamate di importazione e 4 di testing, 95.242 token complessivi comunicati da Codex (cache 0). Nessuna seconda lettura dell'Excel durante la correzione del riconoscimento MuMu. La correttezza su ogni possibile workbook o launcher Android non è garantita da questi test.
+
 ## Aggiornamento 0.5.0 — importazione adattiva (20 settembre)
 
 87 test software locali superati, senza GPT reale né azioni Android. Fixture con foglio misto in nome non latino, intestazione report alla riga 70, guide/glossario/dev key/log key, assenza di formato cliente con fallback, note e collegamenti, gerarchie unite, schede verticali ripetute, espansione prima del footer e più tabelle sullo stesso foglio. Verificati blocco prima della creazione del driver in caso di importazione incompleta e Pass senza screenshot/commenti. L'export viene provato prima della navigazione con evidenze sintetiche private, mai incluse nei risultati del gioco.

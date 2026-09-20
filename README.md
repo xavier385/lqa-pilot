@@ -6,15 +6,19 @@ Bot visuale per giochi Android in MuMu. Acquisisce autonomamente gli screenshot,
 
 **GPT viene usato tramite `codex exec` con login ChatGPT**, senza chiavi API, SDK OpenAI o automazione dell'interfaccia di ChatGPT. Richiede connessione Internet e una sessione Codex abilitata; consuma la quota Codex dell'abbonamento. Non è un modello offline né un servizio a consumo illimitato. Riferimenti ufficiali: [autenticazione](https://developers.openai.com/codex/auth), [esecuzione non interattiva e JSON strutturato](https://developers.openai.com/codex/noninteractive).
 
-## Web app — avvio senza comandi (versione 0.5)
+## Web app — avvio senza comandi (versione 0.6)
 
-**Aggiornamento 0.5.0: lettura dei progetti senza template fisso.** Ogni foglio viene letto per intero nei limiti dichiarati, comprese sezioni miste, commenti, collegamenti, immagini e contesto delle celle unite. Il bot distingue obiettivi/test, guide, glossari, dev key, log key, tassonomie e formati dei difetti. I nomi dei fogli, l'ordine delle colonne e le etichette di priorità non sono prefissati. Le chiavi mantengono valore, significato, utilizzo dichiarato e righe di provenienza; non danno accesso al codice/engine e non vengono interpretate automaticamente come comandi.
+**0.6.0: basta un Excel con obiettivi o user journey.** Bug list, glossario, dev key, log key, guide, priorità e identificativi sono facoltativi. Non sono richiesti nomi di fogli o colonne particolari. Il piano conserva le righe di provenienza; report di esempio e glossari non vengono trasformati in test inventati.
 
-Dopo la lettura viene verificato il contesto di ogni test con le istruzioni dell'intero file e viene eseguita una prova privata del generatore Excel, con dati sintetici esclusi dal risultato finale. Solo quando piano e report risultano validi viene creato il driver Android. La UI mostra un riepilogo dell'analisi. Un'ambiguità sostanziale o un riferimento indispensabile non disponibile interrompe l'importazione prima della navigazione. La lettura di collegamenti esterni non viene simulata. Nessuna prova sintetica dell'export diventa un test case del cliente.
+Il caricamento `.xlsx` non ha un limite fisso di dimensione. Il file viene salvato a blocchi sul PC; testo e immagini vengono letti dalle parti XML senza espandere una griglia vuota. Sono rimossi anche i vecchi limiti di 40 fogli, 25.000 righe, 200 colonne, 45.000 celle e 60 chiamate di importazione. I prompt rimangono suddivisi in gruppi; il consumo cresce con i contenuti. Spazio disco, RAM, formato Excel e disponibilità dell'account restano limiti fisici. File cifrati o corrotti e obiettivi realmente assenti/non interpretabili richiedono una correzione. Macro, oggetti incorporati e link non vengono eseguiti.
 
-Il report può avere colonne diverse, campi combinati, celle unite entro un difetto, blocchi verticali ripetibili e più tabelle, anche sullo stesso foglio. I piè di pagina vengono spostati quando serve spazio. I campi mancanti confluiscono in una cella descrittiva disponibile; le chiavi del difetto vengono compilate soltanto quando la corrispondenza con il testo originale è univoca. Se il cliente non fornisce alcun formato, viene usata la tabella di fallback a 18 colonne già concordata. Non si sostituisce silenziosamente un formato cliente non compreso. Report con regioni sovrapposte o celle unite che attraversano più difetti richiedono chiarimento. Le formule mantenute sono esportate come valori salvati; non viene certificata l'esecuzione di macro o calcoli esterni.
+Indicare **Nome del gioco da aprire** e lasciare MuMu avviato. Dopo la lettura dell'Excel il bot cerca l'icona nel launcher Android e avvia il gioco con la registrazione già attiva. Il nome deve corrispondere all'icona; in caso di omonimia o launcher non leggibile si può inserire il package Android. La ricerca usa ADB e i testi del launcher, senza chiamate GPT. Con un package il bot chiude e riavvia soltanto quell'app; con il nome apre l'icona, che può riprendere un'app già attiva. Non vengono cancellati dati o progressi: un tutorial già completato non torna disponibile con il riavvio.
 
-Per questa versione occorre scaricare il nuovo componente Windows: la web app impedisce l'avvio con versioni precedenti alla 0.5.0. Le tre modalità, i log diagnostici e il contatore token restano disponibili. La lettura usa ancora un budget massimo di 60 chiamate; i prompt sono suddivisi anche per quantità di testo e immagini.
+L'avvio viene registrato, con screenshot iniziali analizzati e controlli sulle schermate correnti. Questo conserva prove dall'apertura, ma non certifica automaticamente ogni fotogramma di sequenze animate. Le aree non viste o non raggiungibili restano Incomplete. Il video iniziale è una prova interna nelle modalità LQA, non un download aggiuntivo.
+
+Se la bug list del cliente è utilizzabile, vengono conservati i suoi fogli e il suo formato. Se manca, è ambigua o non può essere compilata, il bot prosegue con un Excel separato a un solo foglio: **Objective / Location, Result, Screenshot, Error type, Text, Description, Suggested fix**. Le colonne Dev key e Log key compaiono solo se quei dati esistono; i valori vengono riportati soltanto con un'associazione verificabile. Per difetti senza testo la cella Text resta vuota. Descrizioni brevi in inglese, fix nella lingua target, screenshot intero con riquadro rosso. Pass ha soltanto la sezione e il label, senza commenti o immagini. La tassonomia di fallback è generica e non impone le categorie del primo cliente.
+
+Occorre il **componente Windows 0.6.0**: chiudere il precedente e aprire il nuovo eseguibile. Restano disponibili check completo, check veloce, solo video, diagnostica e contatore token. Nella modalità video si scaricano solo i video dei journey. I limiti di chiamate impostati per il testing rimangono indipendenti dall'importazione.
 
 **Aggiornamento 0.4.1:** riscaricare il componente Windows, chiudere quello precedente e aprire il nuovo eseguibile. In **Diagnostica e log errori** si possono visualizzare e scaricare i tentativi di collegamento ADB, le porte rilevate e gli errori. Il registro locale ruota automaticamente e non include materiali del progetto, prompt o credenziali. In **Opzioni collegamento MuMu** è possibile indicare la porta ADB locale e, con più dispositivi, il serial. La selezione viene mantenuta nel progetto eseguito; non si modifica più un JSON a mano.
 
@@ -26,11 +30,11 @@ Aprire la web app pubblicata su Vercel e scaricare il componente Windows dal col
 
 Nel browser consentire l'accesso alla rete locale quando richiesto. Il componente rimane sul PC perché deve controllare l'emulatore; Vercel ospita l'interfaccia statica. Lasciare aperti il componente e MuMu durante il lavoro. La web app non ospita l'emulatore e non elimina la quota dell'account Codex.
 
-Caricare l'Excel, scegliere lingua e modalità, rilevare il gioco aperto e premere **Analizza Excel e avvia**. L'importazione legge le righe dei fogli, conserva la provenienza dei test case e considera le immagini incorporate. Le istruzioni del documento sono materiali del progetto, non comandi di sistema. Non vengono creati test dimostrativi in sostituzione di obiettivi mancanti.
+Caricare l'Excel, scegliere lingua e modalità, indicare il nome del gioco e premere **Analizza Excel e avvia**. L'importazione legge le righe dei fogli, conserva la provenienza dei test case e considera le immagini incorporate. Le istruzioni del documento sono materiali del progetto, non comandi di sistema. Non vengono creati test dimostrativi in sostituzione di obiettivi mancanti.
 
 Con **Check completo** e **Check veloce** il solo download è un Excel con le bug list originali del cliente, anche quando i bug testuali e grafici hanno fogli distinti. Intestazioni, stili e larghezze restano quelli originali. Le righe di esempio nell'area dati vengono sostituite dai risultati. Commenti e fix sono in inglese, con screenshot annotati per i bug; Pass non ha screenshot o commenti. Un controllo non completato resta Incomplete. **Solo video** mantiene un MP4 per journey/obiettivo; i percorsi incompleti vengono indicati nella UI.
 
-Limiti di elaborazione: massimo 30 MB, 40 fogli e 45.000 celle non vuote. I gruppi di lettura sono limitati anche a 12 immagini e alla quantità di testo; nessuna riga viene troncata silenziosamente. Una singola riga eccezionalmente estesa, un formato sovrapposto o informazioni essenziali mancanti producono un errore esplicito. Le formule dei fogli conservati vengono convertite nei valori salvati e le convalide dipendenti da altri fogli vengono rimosse. Le formule essenziali prive di valori salvati richiedono prima il ricalcolo in Excel. Un formato troppo stretto per testo completo e screenshot nella stessa cella richiede spazio dedicato. Video esterni e collegamenti a materiali non incorporati non vengono scaricati automaticamente.
+La lettura conserva commenti, collegamenti, immagini e gerarchie delle celle unite. I collegamenti esterni sono riferimenti: non si afferma di averne letto il contenuto. Le formule del report originale sono esportate come valori salvati. I formati che non possono essere conservati ricadono sul report semplice, con un avviso nel riepilogo di importazione.
 
 I file operativi restano nella cartella locale `%LOCALAPPDATA%\LQA Pilot\jobs`. Sono necessari al bot, ma non vengono offerti come output aggiuntivi dalla web app. Il materiale necessario all'analisi è inviato a GPT tramite Codex. Le funzionalità CLI descritte sotto rimangono disponibili per chi usa il pacchetto sorgente.
 
@@ -54,7 +58,7 @@ Estrarre il progetto sul nuovo PC e avviare una nuova run. `pack-project` includ
 
 ## Avvio
 
-Aprire MuMu, avviare il gioco e aprire un terminale nella cartella di LQA Pilot. Codex e Python vengono individuati nelle installazioni esistenti.
+Aprire MuMu e un terminale nella cartella di LQA Pilot. Codex e Python vengono individuati nelle installazioni esistenti.
 
 ```powershell
 .\Start.ps1 doctor --project examples/last-asylum-smoke.json
@@ -168,9 +172,9 @@ Il navigatore può proporre di terminare, **non assegnare PASS**. Prima vengono 
 
 Un PASS riguarda lo scope scritto nel case, non l'intero gioco. L'audit è anch'esso basato su GPT e non fornisce una garanzia matematica di assenza di errori; il risultato resta da revisionare. L'accuratezza della traduzione rispetto alla sorgente non può essere certificata senza sorgenti/glossario. I controlli audio restano incompleti in questa versione. La raccolta delle schermate è automatica; non serve registrare un video continuo per eseguire LQA testuale.
 
-## Risultati e template cliente
+## Compatibilità CLI con il template storico
 
-`report.xlsx` contiene soltanto **Bug list**, con le 18 intestazioni originali del cliente e nello stesso ordine. Nessuna copertina, foglio riepilogativo o colonna aggiuntiva.
+Le informazioni di questa sezione riguardano i progetti CLI storici senza `client_workbook`, non l’importazione Excel della web app. Per questi progetti `report.xlsx` contiene **Bug list**, con le 18 intestazioni originali del primo cliente. Nessuna copertina, foglio riepilogativo o colonna aggiuntiva.
 
 - **Pass**: nome/ID della sezione e label `Pass` in `LQA Status`; nessuna immagine o commento.
 - **Bug**: tipo del cliente, testo integrale, commento inglese in una frase (massimo 220 caratteri) e fix completo nella lingua target. La cella `Error Description & Suggestion` usa tre righe: `Text`, `Issue`, `Fix`. Lo screenshot completo è incorporato nella colonna `Screenshot`; il riquadro rosso non copre i pixel del testo. Per overflow: alternativa breve senza perdita d'informazioni, oppure riduzione del font.
@@ -195,7 +199,7 @@ Per far eseguire il ricontrollo a un collega, trasferire l'Excel modificato **in
 - `results.json`: dati strutturati, inclusi candidati incerti.
 - `run.json`, `events.jsonl`, `evidence/`, `model/`: stato, percorso, prove originali e richieste/risposte/metriche del modello.
 
-La tassonomia predefinita contiene i **42 sottotipi effettivamente letti dal file Excel fornito**. Categoria, priorità T0/T1/T2 e assegnatario derivano da quel sottotipo; GPT non inventa severità. Un progetto può specificare una tassonomia JSON diversa con `taxonomy`. Se manca, viene usata quella fornita e inclusa nel bot. Non viene ricostruita una tassonomia di un altro cliente da supposizioni.
+La tassonomia storica dei progetti CLI contiene i **42 sottotipi effettivamente letti dal file Excel fornito**. Categoria, priorità T0/T1/T2 e assegnatario derivano da quel sottotipo; GPT non inventa severità. Un progetto può specificare una tassonomia JSON diversa con `taxonomy`. Se manca, viene usata quella fornita e inclusa nel bot. Non viene ricostruita una tassonomia di un altro cliente da supposizioni.
 
 ```powershell
 .\Start.ps1 taxonomy "C:\percorso\template.xlsx" --output projects/cliente/taxonomy.json

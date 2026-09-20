@@ -26,7 +26,7 @@ CASE = obj(id=S, title=S, objective=S, journey=arr(S), checks=arr(CHECK))
 PLAN = obj(cases=arr(CASE), assumptions=arr(S), material_gaps=arr(S))
 ACTION = obj(kind=enum("tap", "swipe", "long_press", "back", "wait", "type_text", "inspect", "finish", "blocked"),
              x=N, y=N, x2=N, y2=N, duration_ms=N, text=S,
-             target=S, expected_change=S, risk=enum("navigation", "game_progress", "spend", "account", "communication", "privacy"))
+             target=S, expected_change=S, risk=enum("navigation", "game_progress", "required_terms", "spend", "account", "communication", "privacy"))
 NAV = obj(screen_name=S, visible_text=arr(S), observed_scopes=arr(S),
           uncovered_areas=arr(S), inspect_checks=arr(S), action=ACTION,
           rationale=S, blocker=S)

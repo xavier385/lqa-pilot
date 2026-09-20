@@ -8,6 +8,8 @@ import threading
 import time
 import uuid
 import traceback
+import tempfile
+import shutil
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 from urllib.parse import urlsplit, unquote
@@ -65,11 +67,13 @@ class Jobs:
             if self.current and self.current['status'] in ACTIVE: raise PilotError('Un progetto è già in esecuzione')
             if options.get('mode') not in {'full','fast','video'}: raise PilotError('Scegliere una modalità valida')
             if not options.get('language') or len(options['language'])>60: raise PilotError('Indicare la lingua da testare')
-            if not re.fullmatch(r'[A-Za-z][\w]*(?:\.[\w]+)+',options.get('package','')): raise PilotError('Selezionare il gioco aperto in MuMu')
+            if options.get('package') and not re.fullmatch(r'[A-Za-z][\w]*(?:\.[\w]+)+',options['package']):raise PilotError('Package Android non valido')
+            if not options.get('package') and not str(options.get('game_name','')).strip():raise PilotError('Indicare il nome del gioco da aprire')
             limit=options.get('max_calls',100)
             if type(limit)!=int or not 10<=limit<=500: raise PilotError('Limite chiamate non valido')
             ident=uuid.uuid4().hex;folder=self.folder/ident;folder.mkdir()
-            (folder/'input.xlsx').write_bytes(contents)
+            if isinstance(contents,Path):shutil.move(str(contents),folder/'input.xlsx')
+            else:(folder/'input.xlsx').write_bytes(contents)
             self.current={'id':ident,'filename':filename,'status':'importing','mode':options['mode'],
                           'message':'Lettura del progetto Excel','downloads':[]}
             self.cancelled.clear();self.save()
@@ -95,7 +99,7 @@ class Jobs:
             engine=Engine(plan,folder/'run',driver=Android(plan['device'],diagnostics=self.log.write),diagnostics=self.log.write)
             self.update(status='running',message='Navigazione e raccolta delle prove')
             if self.cancelled.is_set(): (folder/'run/STOP').touch()
-            state=engine.run(launch=False)
+            state=engine.run(launch=True)
             if options['mode']=='video':
                 downloads=[{'name':Path(c['video']['path']).name,'key':cid,'kind':'video',
                             'partial':c.get('coverage')!='complete'} for cid,c in state['cases'].items() if c.get('video',{}).get('path')]
@@ -210,6 +214,23 @@ class Companion:
                 if len(value)!=count: raise PilotError('Caricamento interrotto')
                 return value
 
+            def workbook_body(self):
+                try:remaining=int(self.headers.get('Content-Length','0'))
+                except ValueError:raise PilotError('Dimensione richiesta non valida')
+                if remaining<=0:raise PilotError('File Excel vuoto')
+                self.connection.settimeout(120)
+                fd,name=tempfile.mkstemp(suffix='.xlsx',prefix='upload-',dir=app.jobs.folder)
+                target=Path(name)
+                try:
+                    with os.fdopen(fd,'wb') as dst:
+                        while remaining:
+                            chunk=self.rfile.read(min(1024*1024,remaining))
+                            if not chunk:raise PilotError('Caricamento interrotto')
+                            dst.write(chunk);remaining-=len(chunk)
+                    return target
+                except BaseException:
+                    target.unlink(missing_ok=True);raise
+
             def do_GET(self): self.route(False)
             def do_POST(self): self.route(True)
             def route(self,post):
@@ -240,7 +261,10 @@ class Companion:
                         opts['device']=dict(app.device_config)
                         filename=Path(unquote(self.headers.get('X-Filename','project.xlsx'))).name[:150]
                         if not filename.lower().endswith('.xlsx'): raise PilotError('Caricare un file .xlsx')
-                        self.answer(app.jobs.submit(self.body(30*1024*1024),filename,opts),202);return
+                        uploaded=self.workbook_body()
+                        try:self.answer(app.jobs.submit(uploaded,filename,opts),202)
+                        finally:uploaded.unlink(missing_ok=True)
+                        return
                     if post and route=='/stop': app.jobs.stop();self.answer({'ok':True});return
                     if not post and route.startswith('/download/'):
                         path,name=app.jobs.download(route.rsplit('/',1)[-1])

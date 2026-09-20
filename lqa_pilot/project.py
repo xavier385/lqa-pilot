@@ -62,8 +62,8 @@ def import_taxonomy(workbook, output):
 def load_project(path, mode=None):
     path = Path(path).resolve()
     p = read_json(path)
-    if not p.get("name") or not p.get("device", {}).get("package"):
-        raise PilotError("Il progetto richiede name e device.package")
+    if not p.get("name") or not (p.get("device", {}).get("package") or p.get("device", {}).get('game_name')):
+        raise PilotError("Il progetto richiede un nome e il gioco da aprire")
     if not p.get("language"):
         raise PilotError("Configurare language (oppure 'detect' per una prova esplorativa)")
     p.setdefault("report_language", "Italiano")

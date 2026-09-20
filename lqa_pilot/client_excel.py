@@ -4,6 +4,8 @@ import posixpath
 import re
 import io
 import math
+import shutil
+from collections.abc import MutableMapping
 from xml.sax.saxutils import quoteattr
 from pathlib import Path
 from zipfile import ZipFile, ZIP_DEFLATED
@@ -22,6 +24,30 @@ P='http://schemas.openxmlformats.org/package/2006/relationships'
 D='http://schemas.openxmlformats.org/drawingml/2006/spreadsheetDrawing'
 A='http://schemas.openxmlformats.org/drawingml/2006/main'
 C='http://schemas.openxmlformats.org/package/2006/content-types'
+
+class WorkbookParts(MutableMapping):
+    """Keep unchanged ZIP members on disk; images from other sheets need no RAM copy."""
+    def __init__(self,path):
+        self.path=path;self.changed={}
+        with ZipFile(path) as z:self.names=dict.fromkeys(z.namelist())
+    def __getitem__(self,key):
+        if key not in self.names:raise KeyError(key)
+        if key in self.changed:return self.changed[key]
+        with ZipFile(self.path) as z:return z.read(key)
+    def __setitem__(self,key,value):self.names[key]=None;self.changed[key]=value
+    def __delitem__(self,key):del self.names[key];self.changed.pop(key,None)
+    def __iter__(self):return iter(self.names)
+    def __len__(self):return len(self.names)
+    def __contains__(self,key):return key in self.names
+    def pop(self,key,default=None):
+        if key in self.names:del self[key]
+        return default
+    def save(self,path):
+        with ZipFile(self.path) as source,ZipFile(path,'w',ZIP_DEFLATED) as target:
+            for name in self.names:
+                if name in self.changed:target.writestr(name,self.changed[name])
+                else:
+                    with source.open(name) as src,target.open(name,'w',force_zip64=True) as dst:shutil.copyfileobj(src,dst,1024*1024)
 def tag(ns,name): return '{'+ns+'}'+name
 def xml(root, original=None):
     # Excel compatibility attributes contain prefix names as values (e.g. mc:Ignorable).
@@ -119,7 +145,7 @@ def export_client(folder, *, state=None):
     if not template.is_file():
         template=Path(contract['template'])
     if not template.is_file(): raise PilotError('Template originale non disponibile per il report')
-    with ZipFile(template) as z: files={n:z.read(n) for n in z.namelist()}
+    files=WorkbookParts(template)
     workbook=ET.fromstring(files['xl/workbook.xml']); rels=ET.fromstring(files['xl/_rels/workbook.xml.rels'])
     relations={e.attrib['Id']:part('xl/workbook.xml',e.attrib['Target']) for e in rels}
     keep={s['name'] for s in contract['sheets']}
@@ -303,7 +329,6 @@ def export_client(folder, *, state=None):
         files[drawing_path]=xml(drawing,files.get(drawing_path));files[relpath(drawing_path)]=xml(drawing_rels)
     files['xl/workbook.xml']=xml(workbook,files['xl/workbook.xml']);files['xl/_rels/workbook.xml.rels']=xml(rels);files['[Content_Types].xml']=xml(types)
     target=folder/'report.xlsx';staging=folder/'report.pending.xlsx'
-    with ZipFile(staging,'w',ZIP_DEFLATED) as z:
-        for name,contents in files.items(): z.writestr(name,contents)
+    files.save(staging)
     staging.replace(target)
     return target

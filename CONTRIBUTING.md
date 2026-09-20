@@ -1,6 +1,6 @@
 # Sviluppare LQA Pilot
 
-Questo repository contiene il bot Windows, la web app statica e i test software della versione 0.5.0. Il funzionamento per gli operatori è descritto in [README.md](README.md); i risultati e i limiti delle verifiche sono in [VALIDAZIONE.md](VALIDAZIONE.md).
+Questo repository contiene il bot Windows, la web app statica e i test software della versione 0.6.0. Il funzionamento per gli operatori è descritto in [README.md](README.md); i risultati e i limiti delle verifiche sono in [VALIDAZIONE.md](VALIDAZIONE.md).
 
 ## Ambiente locale
 
