@@ -50,6 +50,9 @@ class WorkbookParts(MutableMapping):
                     with source.open(name) as src,target.open(name,'w',force_zip64=True) as dst:shutil.copyfileobj(src,dst,1024*1024)
 def tag(ns,name): return '{'+ns+'}'+name
 def xml(root, original=None):
+    # OPC package readers expect an unprefixed root for content types/relationships.
+    if root.tag in {tag(C,'Types'),tag(P,'Relationships')}:
+        ET.register_namespace('',root.tag[1:].split('}',1)[0])
     # Excel compatibility attributes contain prefix names as values (e.g. mc:Ignorable).
     # ElementTree does not retain declarations used only by those attribute values.
     namespaces={}

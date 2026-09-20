@@ -2,7 +2,7 @@
 
 ## Aggiornamento 0.6.0 — progetti generici e avvio del gioco (20 settembre)
 
-95 test software locali superati. Verificati upload HTTP a blocchi di 31 MB, lettura di 42 fogli con una cella alla riga 50.000/colonna 250, obiettivi senza bug list, report semplice con sole chiavi presenti, fallback per report non utilizzabile e registrazione attiva prima dell'apertura del gioco. Nessun limite fisso sul peso dell'XLSX; RAM e disco restano risorse finite. Le parti non modificate dell'export vengono copiate in streaming.
+96 test software locali superati. Verificati upload HTTP a blocchi di 31 MB, lettura di 42 fogli con una cella alla riga 50.000/colonna 250, obiettivi senza bug list, report semplice con sole chiavi presenti, fallback per report non utilizzabile e registrazione attiva prima dell'apertura del gioco. Nessun limite fisso sul peso dell'XLSX; RAM e disco restano risorse finite. Le parti non modificate dell'export vengono copiate in streaming.
 
 Prova reale espressamente richiesta: creato un Excel a un solo foglio/una colonna con tre obiettivi dimostrativi (tutorial, impostazioni, menu informativo). Due chiamate GPT hanno riconosciuto i tre obiettivi senza glossario, chiavi o bug list. Il launcher ha trovato Last Asylum dal nome e aperto il package `com.phs.global`. Corretto il riconoscimento quando MuMu esegue l'app in un profilo Android diverso da quello predefinito; corretto anche il rilevamento della porta nel campo `port_forward.adb.host_port`.
 

@@ -17,6 +17,13 @@ from test_adaptive_workbooks import Planner,spec
 
 
 class GenericProjectsTests(unittest.TestCase):
+    def test_package_metadata_uses_default_namespaces(self):
+        import xml.etree.ElementTree as ET
+        from lqa_pilot.client_excel import xml,tag,C,P
+        for namespace,name in [(C,'Types'),(P,'Relationships')]:
+            serialized=xml(ET.Element(tag(namespace,name)))
+            self.assertIn(('<'+name+' xmlns=').encode(),serialized)
+
     def test_terms_require_explicit_operator_option_and_exclude_optional_ads(self):
         from lqa_pilot.demo import action
         step=action('tap','Nutzungsvereinbarung checkbox','required_terms',.1,.2)
